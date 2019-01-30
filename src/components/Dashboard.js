@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import User from "./User";
 class Dashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       users: []
     };
@@ -21,6 +21,7 @@ class Dashboard extends Component {
   };
 
   render() {
+    console.log("this.props", this.props);
     const { users } = this.state;
     const allUsers = users.map(user => {
       return (

@@ -22,9 +22,26 @@ module.exports = {
     });
   },
 
-  searchCity: (req, res) => {
+  searchUser: (req, res) => {
+    console.log(req.query, "query");
     const database = req.app.get("db");
-    console.log(req.query);
-    const { search } = req.query;
+    const { name } = req.query;
+    let searchedCity = name.toLowerCase();
+
+    database.get_users().then(usersList => {
+      console.log(usersList, "list");
+      let filter = usersList.filter(user => {
+        console.log("name", user.city);
+        if (user.city.toLowerCase() === searchedCity) {
+          return user.city;
+        }
+      });
+      console.log(searchedCity, "wat is searched");
+      if (searchedCity.length > 0) {
+        res.status(200).send(searchedCity);
+      } else {
+        res.status(500).send("Invalid Name");
+      }
+    });
   }
 };

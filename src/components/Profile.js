@@ -2,16 +2,26 @@ import React, { Component } from "react";
 import axios from "axios";
 import Bios from "./Bios";
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      bio: []
+      bio: [],
+      city: [],
+      search: ""
     };
   }
   componentDidMount() {
     this.getBio();
+    this.getUsers();
   }
-
+  getUsers = () => {
+    axios.get("/api/users").then(res => {
+      console.log(res, "res?");
+      this.setState({
+        users: res.data
+      });
+    });
+  };
   getBio = () => {
     axios.get("/api/bio").then(res => {
       this.setState({
@@ -20,18 +30,24 @@ class Profile extends Component {
     });
   };
 
-  editBio = () => {
-    const { bio_id, bio_interest } = this.props;
-    axios.put(`/api/bio/${bio_id}`, { bio_interest }).then(() => {
-      window.location.pathname = "/users";
+  searchUser(val) {
+    axios.get(`/api/user/search?name=${val}`).then(res => {
+      console.log(res.data, "res.data from search");
+      if (res.data === "invalid search") {
+        alert(res.data);
+      } else {
+        this.setState({
+          city: res.data,
+          search: ""
+        });
+      }
     });
-  };
+  }
 
   render() {
     const { bio } = this.state;
 
     const allBios = bio.map(interest => {
-      console.log(interest);
       return (
         <div>
           <Bios {...interest} />
@@ -40,8 +56,17 @@ class Profile extends Component {
     });
     return (
       <div className="Profile">
-        Search City:
-        <input /> <button>Search</button>
+        Search Name:
+        <input
+          value={this.state.search}
+          onChange={e => {
+            this.setState({ search: e.target.value });
+          }}
+        />
+        <button onClick={() => this.searchUser(this.state.search)}>
+          Search
+        </button>
+        {this.state.city}
         {allBios}
       </div>
     );

@@ -15,9 +15,23 @@ massive(process.env.CONNECTION_STRING)
     console.log(error, "error w massive");
   });
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+  })
+);
+// app.use(express.static(`${__dirname}/../build`));
+app.use(express.static("public"));
+
 app.get("/api/users", controller.getUser);
 app.get("/api/bio", controller.getBio);
 app.put("/api/bio/:bio_id", controller.editBio);
+app.get("/api/user/search", controller.searchUser);
 
 const PORT = 4000;
 app.listen(PORT, () => {
