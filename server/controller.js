@@ -32,16 +32,20 @@ module.exports = {
       console.log(usersList, "list");
       let filter = usersList.filter(user => {
         console.log("name", user.city);
-        if (user.city.toLowerCase() === searchedCity) {
+        if (user.city.toLowerCase().includes(searchedCity)) {
           return user.city;
         }
       });
       console.log(searchedCity, "wat is searched");
-      if (searchedCity.length > 0) {
-        res.status(200).send(searchedCity);
+      if (filter.length > 0) {
+        res.status(200).send(filter);
       } else {
         res.status(500).send("Invalid Name");
       }
     });
+  },
+
+  getSearched: (req, res) => {
+    res.json(req.session);
   }
 };

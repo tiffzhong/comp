@@ -6,8 +6,7 @@ class Profile extends Component {
     super(props);
     this.state = {
       bio: [],
-      city: [],
-      search: ""
+      city: []
     };
   }
   componentDidMount() {
@@ -30,20 +29,6 @@ class Profile extends Component {
     });
   };
 
-  searchUser(val) {
-    axios.get(`/api/user/search?name=${val}`).then(res => {
-      console.log(res.data, "res.data from search");
-      if (res.data === "invalid search") {
-        alert(res.data);
-      } else {
-        this.setState({
-          city: res.data,
-          search: ""
-        });
-      }
-    });
-  }
-
   render() {
     const { bio } = this.state;
 
@@ -56,16 +41,6 @@ class Profile extends Component {
     });
     return (
       <div className="Profile">
-        Search Name:
-        <input
-          value={this.state.search}
-          onChange={e => {
-            this.setState({ search: e.target.value });
-          }}
-        />
-        <button onClick={() => this.searchUser(this.state.search)}>
-          Search
-        </button>
         {this.state.city}
         {allBios}
       </div>

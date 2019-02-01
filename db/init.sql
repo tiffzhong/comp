@@ -32,3 +32,34 @@ select * from users
 join user_bio
 on users.user_id = user_bio.bio_id;
 where users.user_id = 1
+
+
+---
+drop table if exists travel_info;
+drop table if exists passport_info;
+
+create table travel_info(
+person_id serial PRIMARY KEY,
+name varchar(50),
+email varchar(200)
+);
+
+create table passport_info(
+passport_id serial PRIMARY KEY,
+passport_num varchar(100),
+passport_person_id int references travel_info(person_id)
+);
+
+insert into travel_info ( name, email)
+values ('Tiffany Z', 'tiffz@gmail'),
+('CJ M', 'cjm@gmail'),
+('Sean P', 'sean@dm.com');
+
+insert into passport_info(passport_num, passport_person_id)
+values(1111,1),
+(1222,2), 
+(1333,3);
+
+
+select * from travel_info;
+select * from passport_info;

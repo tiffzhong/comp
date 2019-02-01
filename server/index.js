@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const massive = require("massive");
+const session = require("express-session");
 const dotenv = require("dotenv");
 dotenv.config();
 const controller = require("./controller");
@@ -32,6 +33,7 @@ app.get("/api/users", controller.getUser);
 app.get("/api/bio", controller.getBio);
 app.put("/api/bio/:bio_id", controller.editBio);
 app.get("/api/user/search", controller.searchUser);
+app.get("/api/searched", controller.getSearched);
 
 const PORT = 4000;
 app.listen(PORT, () => {
