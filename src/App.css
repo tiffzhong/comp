@@ -1,32 +1,142 @@
+:root {
+  --main-bg-color: #8789ce;
+}
+
 .App {
   text-align: center;
+  background-color: var(--main-bg-color);
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Dashboard {
+  padding-top: 70px;
   display: flex;
-  flex-direction: column;
+  /* justify-content: flex-start; */
   align-items: center;
+  flex-direction: column;
+}
+.Dashboard h1 {
+  position: absolute;
+  right: 40px;
+  bottom: 150px;
+}
+.users-container {
+  margin-right: 0;
+  border: 1px solid teal;
+  padding: 40px;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+.users-container section {
+  color: purple;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: lightcoral;
 }
 
-.App-link {
-  color: #61dafb;
+nav a {
+  text-decoration: none;
+  color: darkgreen;
+  font-size: 40px;
+  margin-left: 20px;
+}
+nav a:hover {
+  transition: 1s;
+  font-size: 45px;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.Profile {
+  padding-top: 70px;
+  height: 90vh;
+  background-size: 1500px;
+  background-repeat: no-repeat;
+  /* background-position: cover; */
+  background-image: url("./doggeh.jpg");
+}
+
+.Match {
+  padding-top: 80px;
+}
+
+.Match > h4 {
+  position: relative;
+  right: 200px;
+}
+
+.Match p {
+  color: pink;
+}
+
+#hello {
+  background-color: plum;
+}
+
+.hello + h6 {
+  background-color: yellow;
+}
+
+@media (max-width: 800px) {
+  .Profile {
+    background-image: url(./bird.jpg);
   }
-  to {
-    transform: rotate(360deg);
+}
+
+.slider-image {
+  position: relative;
+  animation: slider 3s infinite;
+}
+.slider-image img {
+  width: 50px;
+}
+@keyframes slider {
+  0% {
+    top: 0px;
+    left: 0px;
   }
+  25% {
+    top: 0px;
+    left: 100px;
+  }
+}
+
+.spongebob img {
+  width: 200px;
+  box-shadow: 5px 10px #888888;
+  float: right;
+}
+.spongebob {
+  transform: rotate(20deg);
+}
+
+.title {
+  width: 800px;
+  height: 200px;
+  background-image: linear-gradient(to right, aqua, white, blue);
+}
+
+.text p {
+  white-space: nowrap;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+footer {
+  background-color: orange;
+  width: 100%;
+}
+
+.focus1:focus {
+  background: pink;
+  color: red;
+}
+
+.Match h4:nth-child(2) {
+  background: orange;
 }

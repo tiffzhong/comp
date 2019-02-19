@@ -46,6 +46,28 @@ module.exports = {
   },
 
   getSearched: (req, res) => {
+    const database = req.app.get("db");
+    const { name } = req.query;
+    console.log(name, "leme see querey");
+    database.get_users().then(usersList => {
+      console.log(usersList, "list");
+      let filter = usersList.filter(user => {
+        console.log("name", user.city);
+        return name;
+      });
+      console.log(searchedCity, "wat is searched");
+      if (filter.length > 0) {
+        res.status(200).send(filter);
+      } else {
+        res.status(500).send("Invalid Name");
+      }
+    });
+    console.log(req.body);
+    res.json(req.session);
+  },
+  getSession: (req, res) => {
+    console.log("jello");
+    req.session.message = "jello";
     res.json(req.session);
   }
 };

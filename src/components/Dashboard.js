@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import User from "./User";
+import { Link } from "react-router-dom";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -24,14 +25,10 @@ class Dashboard extends Component {
 
   searchUser(val) {
     axios.get(`/api/user/search?name=${val}`).then(res => {
-      if (res.data === "invalid") {
-        alert(res.data);
-      } else {
-        this.setState({
-          holder: res.data,
-          search: ""
-        });
-      }
+      this.setState({
+        holder: res.data,
+        search: ""
+      });
     });
   }
 
@@ -49,8 +46,10 @@ class Dashboard extends Component {
     const { users } = this.state;
     const allUsers = users.map(user => {
       return (
-        <div>
-          <User {...user} key={user.id} />
+        <div className="users-container">
+          <section>
+            <User {...user} key={user.id} />
+          </section>
         </div>
       );
     });
@@ -59,12 +58,13 @@ class Dashboard extends Component {
     const searched = holder.map(search => {
       return <p>{search.city}</p>;
     });
-    // const { whatYouSearched } = this.state;
-    // const displaySearchedValue = whatYouSearched.map(displaySearched => {
-    //   return <p>{displaySearched}</p>;
-    // });
+
     return (
       <div className="Dashboard">
+        <div className="title">
+          <h2>beautiful dashboard</h2>
+        </div>
+        <h1> absolute positioning</h1>
         Search City:
         <input
           value={this.state.search}
@@ -76,13 +76,13 @@ class Dashboard extends Component {
           Search
         </button>
         <br />
-        Placeholder: {searched}
+        Search Results: {searched}
         <br />
         <p>{allUsers}</p>
-        <button onClick={() => this.showSearched(this.state.whatYouSearched)}>
-          Click Dis
-        </button>
-        {/* {displaySearchedValue} */}
+        <Link to="/spongebob">Click for Surprise</Link>
+        <video width="320" height="240" controls>
+          <source src="movie.mp4" type="video/mp4" />
+        </video>
       </div>
     );
   }

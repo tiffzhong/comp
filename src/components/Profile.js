@@ -43,6 +43,12 @@ class Profile extends Component {
       <div className="Profile">
         {this.state.city}
         {allBios}
+        <div className="slider-image">
+          <img
+            src="https://lh3.googleusercontent.com/-seQJJ1qSOmI/AAAAAAAAAAI/AAAAAAAAAGY/AX7SXlr0wXw/photo.jpg"
+            alt="sam"
+          />
+        </div>
       </div>
     );
   }

@@ -1,3 +1,3 @@
-select * from users
+select * from cities
 join user_bio
-on users.user_id = user_bio.bio_id;
+on cities.id = user_bio.bio_id;

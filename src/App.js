@@ -9,6 +9,7 @@ class App extends Component {
       <div className="App">
         <Nav />
         {routes}
+        <footer>this is da footereh</footer>
       </div>
     );
   }

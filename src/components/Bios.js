@@ -28,6 +28,12 @@ class Bios extends Component {
         window.location.pathname = "/users";
       });
   };
+  clicker = () => {
+    axios
+      .get("/api/session")
+      .then(res => console.log(res.data.message))
+      .catch(err => console.log("Err in set cart", err));
+  };
 
   render() {
     let { city, bio_id } = this.props;
@@ -46,9 +52,22 @@ class Bios extends Component {
         >
           Edit
         </button>
-        <Link to={`/match/${bio_id}`}>
-          <li>Match</li>
-        </Link>
+        <Link to={`/match/${bio_id}`}>Click here to match.params</Link>
+        <div id="hello">hiya</div>
+        <div className="text">
+          <p>
+            that has a lot of text and will be
+            ellipsisasjdfkl;asdkjf;aksldjf;lskjdf;lkjas;dflkjs;dlfkjas;lkjasdfsadfsadfsdflkasdf;lkwueriowuelksjlk;sdf
+          </p>
+        </div>
+
+        <button
+          onClick={() => {
+            this.clicker();
+          }}
+        >
+          Click-a-roo
+        </button>
       </div>
     );
   }

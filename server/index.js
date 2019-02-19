@@ -26,7 +26,7 @@ app.use(
     }
   })
 );
-// app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 app.use(express.static("public"));
 
 app.get("/api/users", controller.getUser);
@@ -34,6 +34,8 @@ app.get("/api/bio", controller.getBio);
 app.put("/api/bio/:bio_id", controller.editBio);
 app.get("/api/user/search", controller.searchUser);
 app.get("/api/searched", controller.getSearched);
+
+app.get("/api/session", controller.getSession);
 
 const PORT = 4000;
 app.listen(PORT, () => {

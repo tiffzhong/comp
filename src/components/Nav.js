@@ -5,17 +5,11 @@ class Nav extends Component {
   render() {
     return (
       <header>
-        <div className="logged-in-header">
-          <ul>
-            <Link to="/">
-              <li>Dashboard</li>
-            </Link>
+        <nav>
+          <Link to="/">Dashboard</Link>
 
-            <Link to="/users">
-              <li>Hobbies</li>
-            </Link>
-          </ul>
-        </div>
+          <Link to="/users">Hobbies</Link>
+        </nav>
       </header>
     );
   }
